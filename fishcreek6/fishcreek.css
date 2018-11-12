@@ -34,16 +34,18 @@ nav {	font-weight:bold;
 	}
 
 nav ul {list-style-type:none;
-	text-decoration:none;
 	}
 
 nav a:link {color:#000066;
+	text-decoration:none;
 	}
 
 nav a:visited {color:#5280c5;
+	text-decoration:none;
 	}
 
 nav a:hover {color:#3262a3;
+	text-decoration:none;
 	}
 
 .category {
