@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Chapter 14 Form Submission</title>
+<meta charset="utf-8">
+<style>
+#submit {margin-left: 7em; }
+</style>
+<script>
+
+var email_regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$/g;
+
+function validateForm() { 
+    // strip all whitespace
+    // credit to https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript#5963202
+    var name  =  document.forms[0].myName.value.replace(/\s/g, '');
+    var email  =  document.forms[0].myEmail.value.replace(/\s/g, '');
+
+    // stores a list of the problems with the user's input
+    var err_msg = [];
+
+    // Make a list of problems, if any...
+    if (name == "") err_msg.push("Name field is blank!");
+    if (email == "") err_msg.push("Email field is blank!");
+    else if ( ! email_regex.test(email)) err_msg.push("Email is not formatted correctly!");
+
+    // If there were any problems, spit them out at the user.
+    if (err_msg.length !== 0) {
+        alert (err_msg.join(' '));
+        return false;
+    }
+
+    // If this code is reachable, the user gave us valid input (or our regex is shit)!
+    return true;
+}
+
+
+</script>
+
+</head>
+<body>
+
+<form method="post" action="http://www.markmurtha.com/csis128/readform.asp" onsubmit="return validateForm();">
+ <label for="myName">Name:</label>
+  <input type="text" name="myName" id="myName"><br>
+ <label for="myEmail">Email Address:</label>
+  <input type="text" name="myEmail" id="myEmail">
+ <input id="mySubmit" type="submit" value="Sign Up Now">
+</form>
+
+<footer>
+<br>This page created by <a href=:mailto:S1387331@student.mcckc.edu">Angela Hughes</a>, copyright &copy; 2018.
+</footer>
+</body>
+</html>
