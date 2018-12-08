@@ -5,6 +5,35 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="soldering.css">
+
+<script>
+var email_regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$/g;
+
+function validateForm() { 
+    // strip all whitespace
+    // credit to https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript#5963202
+    var name  =  myName1;  //document.forms[0].myName1.value.replace(/\s/g, '');
+    var email  =  myEmail;  //document.forms[0].myEmail.value.replace(/\s/g, '');
+
+    // stores a list of the problems with the user's input
+    var err_msg = [];
+
+    // Enumerate problems, if any...
+    if (name == "") err_msg.push("Name field is blank! ");
+    if (email == "") err_msg.push("Email field is blank! ");
+    else if ( ! email_regex.test(email)) err_msg.push("Email is not formatted correctly!");
+
+    // If there were any problems, alert the user.
+    if (err_msg.length !== 0) {
+        alert (err_msg.join(' '));
+        return false;
+    }
+
+    // If this code is reachable, the user gave us valid input!
+    return true;
+}
+</script>
+
 </head>
 <body>
 <div id="wrapper">
@@ -25,11 +54,15 @@
 
 <main>
  <h2>If I've made a mistake, or you have questions or comments, please let me know below!  I welcome any tips and tricks you have to share.</h2>
-  <form method="post" action="FIND A SCRIPTING SERVICE">
-   <label for="myName">(optional) Name:</label>
-    <input type="text" name="myName" id="myName">
+  <form method="post" action="http://webdevbasics.net/scripts/demo.php">
+   <label for="myName1">First name:</label>
+    <input type="text" name="myName1" id="myName1" required="required">
+   <label for="myName2">(optional) Last name:</label>
+    <input type="text" name="myName2" id="myName2">
    <label for="myEmail">Email:</label>
     <input type="email" name="myEmail" id="myEmail" required="required">
+   <label for="myRating">Rate my site! (1 - 5):</label>
+    <input type="range" name="myRating" id="myRating" min="1" max="5">
    <label for="myComments">Comments:</label>
     <textarea name="myComments" id="myComments" required="required" rows="4" cols="20"></textarea>
    <input id="mySubmit" type="submit" value="Email me!">
